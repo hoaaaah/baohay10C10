@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THPT Như Thanh - Báo điện tử</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e21b24;
+            --secondary-color: #0055a5;
+            --accent-color: #ffcc00;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --dark-gray: #444;
+            --white: #fff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 10px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .date-weather {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: var(--white);
+            padding: 5px;
+            width: 200px;
+        }
+        
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            padding: 15px 0;
+        }
+        
+        .nav-menu li {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-menu li:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+        
+        .nav-menu li:hover:after, .nav-menu li.active:after {
+            width: 80%;
+        }
+        
+        /* Breaking news ticker */
+        .breaking-news {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        
+        .news-ticker {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .ticker-label {
+            background: var(--primary-color);
+            padding: 5px 15px;
+            font-weight: bold;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+        
+        .ticker-content {
+            white-space: nowrap;
+            animation: tickerAnimation 30s linear infinite;
+        }
+        
+        @keyframes tickerAnimation {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* Main content styles */
+        .main-headline {
+            background-color: var(--white);
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-headline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: var(--primary-color);
+        }
+        
+        .main-headline h1 {
+            color: var(--primary-color);
+            font-size: 32px;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .headline-content {
+            display: flex;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .headline-text {
+            flex: 1;
+            font-size: 18px;
+        }
+        
+        .headline-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .headline-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .headline-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* News sections */
+        .news-section {
+            background-color: var(--white);
+            margin: 25px 0;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .view-all {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .news-card {
+            background: var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .news-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary-color);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .news-card:hover .news-image {
+            transform: scale(1.05);
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-title {
+            font-size: 18px;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+        
+        .news-excerpt {
+            color: var(--dark-gray);
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .read-more i {
+            margin-left: 5px;
+            transition: var(--transition);
+        }
+        
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Teacher profile */
+        .teacher-section {
+            background: linear-gradient(to right, var(--secondary-color), #003366);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .teacher-section:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(15deg);
+        }
+        
+        .teacher-profile {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .teacher-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            box-shadow: var(--shadow);
+        }
+        
+        .teacher-info {
+            flex: 1;
+        }
+        
+        .teacher-name {
+            color: var(--accent-color);
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .teacher-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .teacher-achievements {
+            margin-top: 20px;
+        }
+        
+        .achievement-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .achievement-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .achievement-item i {
+            color: var(--accent-color);
+            font-size: 20px;
+        }
+        
+        /* Class profile */
+        .class-section {
+            background: linear-gradient(45deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .class-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .class-profile {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .class-name {
+            color: var(--accent-color);
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .class-motto {
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .class-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .class-detail-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .class-detail-card h4 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #003366 100%);
+            color: var(--white);
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .headline-content {
+                flex-direction: column;
+            }
+            
+            .teacher-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .top-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-headline h1 {
+                font-size: 26px;
+            }
+            
+            .class-details {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animated {
+            animation: fadeIn 1s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="top-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>THPT</span> Như Thanh
+                </div>
+                <div class="date-weather">
+                    <div class="date"><i class="fas fa-calendar-alt"></i> Thứ 7, 30-08-2025</div>
+                    <div class="weather"><i class="fas fa-cloud-sun"></i> 25° - 30°C</div>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm kiếm...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="active">MỚI NHẤT</li>
+                <li>XEM NHIỀU</li>
+                <li>VIDEO</li>
+                <li>THỜI SỰ</li>
+                <li>THẾ GIỚI</li>
+                <li>GIÁO DỤC</li>
+                <li>VĂN HÓA</li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="breaking-news">
+        <div class="container">
+            <div class="news-ticker">
+                <div class="ticker-label">TIN MỚI NHẤT</div>
+                <div class="ticker-content">
+                    <i class="fas fa-bullhorn"></i> Trường THPT Như Thanh đón nhận Huân chương Lao động hạng Nhì • Lễ khai giảng năm học mới sẽ được tổ chức vào ngày 5/9 • Lớp 10C10 đạt giải nhất trong cuộc thi Khoa học kỹ thuật cấp trường
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-headline animated">
+            <h1>Trường THPT Như Thanh - Nơi chắp cánh những ước mơ và ươm mầm tài năng trẻ</h1>
+            <div class="headline-content">
+                <div class="headline-text">
+                    <p>Với bề dày truyền thống  hình thành và phát triển, trường THPT Như Thanh tự hào là một trong những ngôi trường hàng đầu của tỉnh, nơi ươm mầm và nuôi dưỡng những tài năng trẻ. Trường không ngừng đổi mới, nâng cao chất lượng giáo dục toàn diện, xứng đáng là địa chỉ tin cậy của phụ huynh và học sinh.</p>
+                    <p>Năm học 2025-2026 đánh dấu một chương mới với sự gia nhập của hơn 1.200 học sinh khóa K60 - thế hệ học sinh đầu tiên sinh năm 2010, hứa hẹn mang đến những màu sắc mới cho ngôi trường giàu truyền thống. Nhà trường đã chuẩn bị chu đáo về cơ sở vật chất, đội ngũ giáo viên để chào đón các em.</p>
+                </div>
+                <div class="headline-image">
+                    <img src="https://files.catbox.moe/st3xg1.jpeg" alt="Trường THPT Như Thanh">
+                </div>
+            </div>
+        </div>
+
+        <div class="news-section animated">
+            <div class="section-header">
+                <h2 class="section-title">LỄ KHAI GIẢNG NĂM HỌC MỚI</h2>
+                <a href="#" class="view-all">Xem thêm <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <p>Sáng ngày 5/9, trường THPT Như Thanh long trọng tổ chức Lễ Khai giảng năm học 2025-2026. Buổi lễ diễn ra trong không khí trang trọng với sự tham dự của đầy đủ các thầy cô giáo, học sinh toàn trường và đại diện phụ huynh. Năm học này đánh dấu nhiều khởi đầu mới với những đổi mới trong phương pháp giảng dạy và học tập.</p>
+            
+            <div class="news-grid">
+                <div class="news-card">
+                    <img class="news-image" src="https://files.catbox.moe/94rp1p.jpeg">
+                    <div class="news-content">
+                        <h3 class="news-title">Khoảnh khắc đáng nhớ trong ngày khai giảng</h3>
+                        <p class="news-excerpt">Những gương mặt rạng rỡ của học sinh trong ngày đầu tiên đến trường, hứa hẹn một năm học đầy thành công.</p>
+                        <a href="#" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img class="news-image" src="https://files.catbox.moe/cqmh11.jpeg" alt="Tiết mục văn nghệ">
+                    <div class="news-content">
+                        <h3 class="news-title">Các tiết mục văn nghệ đặc sắc chào mừng năm học mới</h3>
+                        <p class="news-excerpt">Học sinh toàn trường đã mang đến những tiết mục văn nghệ đặc sắc, thể hiện tài năng và sự sáng tạo.</p>
+                        <a href="#" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img class="news-image" src="https://files.catbox.moe/txdbqb.jpeg" alt="Diễu hành">
+                    <div class="news-content">
+                        <h3 class="news-title"> chào mừng năm học mới</h3>
+                        <p class="news-excerpt">Toàn thể học, của nhà trường với trang phục đẹp mắt, thể hiện tinh thần đoàn kết và sức trẻ.</p>
+                        <a href="#" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="teacher-section animated">
+            <div class="teacher-profile">
+                <img class="teacher-image" src="https://files.catbox.moe/lr569e.jpeg" alt="Cô Lê Thị Liễu">
+                <div class="teacher-info">
+                    <h3 class="teacher-name">CÔ LÊ THỊ LIỄU</h3>
+                    <p class="teacher-title">Giáo viên chủ nhiệm lớp 10C10 - Giáo viên dạy giỏi cấp tỉnh</p>
+                    <p>Với nhiều năm kinh nghiệm giảng dạy và chủ nhiệm, cô Liễu đã dìu dắt nhiều thế hệ học sinh trưởng thành. Cô không chỉ là một nhà giáo mẫu mực mà còn là người mẹ, người bạn thân thiết của học trò. Phương châm giáo dục của cô: "Mỗi học sinh là một viên ngọc quý, cần được mài giũa để tỏa sáng".</p>
+                    <p>Với sự tận tâm và nhiệt huyết, cô không chỉ truyền đạt kiến thức mà còn là người định hướng, dìu dắt học sinh trên con đường phát triển toàn diện cả về tri thức lẫn nhân cách. Cô luôn khuyến khích học sinh phát huy tính sáng tạo, chủ động trong học tập và rèn luyện.</p>
+                    
+                    <div class="teacher-achievements">
+                        <h4><i class="fas fa-trophy"></i> Thành tích nổi bật:</h4>
+                        <div class="achievement-list">
+                            <div class="achievement-item">
+                                <i class="fas fa-award"></i>
+                                <span>Giáo viên dạy giỏi cấp tỉnh 5 năm liền</span>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-award"></i>
+                                <span>Chiến sĩ thi đua cấp tỉnh</span>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-award"></i>
+                                <span>Bằng khen của Bộ Giáo dục và Đào tạo</span>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-award"></i>
+                                <span>Giải nhất cuộc thi Sáng kiến kinh nghiệm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="class-section animated">
+            <div class="class-profile">
+                <h2 class="class-name">LỚP 10C10 - TẬP THỂ ĐOÀN KẾT, SÁNG TẠO VÀ THÀNH CÔNG</h2>
+                <p class="class-motto">"Đoàn kết là sức mạnh, sáng tạo là động lực, thành công là đích đến"</p>
+                
+                <div class="class-details">
+                    <div class="class-detail-card">
+                        <h4><i class="fas fa-users"></i> TINH THẦN TẬP THỂ</h4>
+                        <p>Lớp 10C10 là một tập thể đoàn kết, gắn bó và luôn biết hỗ trợ lẫn nhau trong học tập cũng như trong cuộc sống. Với phương châm "Một người vì mọi người, mọi người vì một người", lớp đã xây dựng được môi trường học tập thân thiện, tích cực, nơi mỗi thành viên đều cảm thấy được tôn trọng và có cơ hội phát triển toàn diện.</p>
+                        <p>Các hoạt động ngoại khóa, các buổi sinh hoạt lớp đều được tổ chức một cách sáng tạo, thu hút sự tham gia nhiệt tình của tất cả thành viên. Tinh thần tập thể được thể hiện rõ nét qua các thành tích đạt được trong các phong trào thi đua của trường.</p>
+                    </div>
+                    
+                    <div class="class-detail-card">
+                        <h4><i class="fas fa-graduation-cap"></i> THÀNH TÍCH HỌC TẬP</h4>
+                        <p>Lớp 10C10 tự hào là một trong những lớp có thành tích học tập xuất sắc nhất khối 10. Với tỷ lệ học sinh giỏi đạt 95%, lớp đã khẳng định được chất lượng giáo dục vượt trội. Các môn học đều có thành tích nổi bật, đặc biệt là các môn Toán, Văn, Anh và các môn Khoa học tự nhiên.</p>
+                        <p>Trong kỳ thi học sinh giỏi cấp trường, lớp có 15 học sinh đạt giải, trong đó có 5 giải nhất. Đặc biệt, lớp đã đạt giải Nhất toàn đoàn trong cuộc thi Khoa học kỹ thuật cấp trường với dự án "Ứng dụng công nghệ trong bảo vệ môi trường".</p>
+                    </div>
+                    
+                    <div class="class-detail-card">
+                        <h4><i class="fas fa-trophy"></i> HOẠT ĐỘNG NGOẠI KHÓA</h4>
+                        <p>Bên cạnh thành tích học tập, lớp 10C10 còn tích cực tham gia các hoạt động ngoại khóa, các phong trào văn hóa văn nghệ, thể dục thể thao của trường. Lớp đã đạt giải Nhất trong Hội thi Văn nghệ chào mừng ngày Nhà giáo Việt Nam với tiết mục múa "Ơn thầy, nghĩa cô" đầy xúc động.</p>
+                        <p>Trong các hoạt động thể thao, lớp cũng giành được nhiều giải thưởng cao như giải Nhì bóng đá nam, giải Ba bóng chuyền nữ. Các hoạt động tình nguyện, từ thiện cũng được lớp quan tâm và tham gia tích cực, thể hiện tinh thần tương thân tương ái, lá lành đùm lá rách.</p>
+                    </div>
+                    
+                    <div class="class-detail-card">
+                        <h4><i class="fas fa-star"></i> ĐỊNH HƯỚNG PHÁT TRIỂN</h4>
+                        <p>Trong năm học tới, lớp 10C10 đặt mục tiêu tiếp tục duy trì và nâng cao chất lượng học tập, phấn đấu đạt 100% học sinh giỏi. Lớp sẽ thành lập các câu lạc bộ học thuật theo nhóm môn học để giúp đỡ nhau cùng tiến bộ, tổ chức các buổi seminar, các cuộc thi nhỏ để nâng cao kiến thức và kỹ năng cho học sinh.</p>
+                        <p>Bên cạnh đó, lớp sẽ tích cực tham gia các hoạt động xã hội, các chương trình tình nguyện để rèn luyện kỹ năng sống và phát huy tinh thần trách nhiệm với cộng đồng. Với sự dìu dắt của cô giáo chủ nhiệm Lê Thị Liễu và sự đoàn kết của cả tập thể, lớp 10C10 chắc chắn sẽ đạt được nhiều thành tích xuất sắc hơn nữa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-section animated">
+            <div class="section-header">
+                <h2 class="section-title">KẾT LUẬN</h2>
+            </div>
+            <p>Trường THPT Như Thanh không chỉ là nơi truyền thụ kiến thức mà còn là môi trường giáo dục toàn diện, nơi học sinh được phát triển cả về trí tuệ, thể chất và nhân cách. Với đội ngũ giáo viên tâm huyết như cô Lê Thị Liễu, cùng những tập thể lớp xuất sắc như 10C10, nhà trường tự hào là địa chỉ giáo dục tin cậy của phụ huynh và học sinh trong toàn tỉnh.</p>
+            <p>Năm học mới 2025-2026 hứa hẹn sẽ mang đến nhiều thành công mới, tiếp tục khẳng định vị thế của nhà trường trong sự nghiệp giáo dục và đào tạo thế hệ trẻ. Tập thể lớp 10C10 dưới sự dẫn dắt của cô giáo Lê Thị Liễu chắc chắn sẽ tiếp tục gặt hái nhiều thành tích xuất sắc, góp phần vào bảng vàng thành tích chung của nhà trường.</p>
+        </div>
+			<!-- ====================== -->
+<!-- PHẦN NỔI BẬT ẤN TƯỢNG -->
+<!-- ====================== -->
+<section class="featured-highlight">
+    <div class="highlight-container">
+        <div class="highlight-header">
+            <h2 class="highlight-title">Điểm Nhấn Nổi Bật</h2>
+            <p class="highlight-subtitle">Những giá trị đặc biệt làm nên thương hiệu THPT Như Thanh</p>
+        </div>
+        
+        <div class="highlight-content">
+            <div class="highlight-card main-highlight">
+                <div class="highlight-badge">Nổi bật</div>
+                <div class="highlight-image">
+                    <img src="https://files.catbox.moe/4vnd91.jpeg" alt="Môi trường học tập THPT Như Thanh">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="highlight-text">
+                    <h3>Môi Trường Giáo Dục Toàn Diện</h3>
+                    <p>THPT Như Thanh không chỉ chú trọng vào chất lượng giảng dạy mà còn xây dựng một môi trường giáo dục toàn diện, nơi học sinh được phát triển cả trí tuệ, thể chất và nhân cách. Với cơ sở vật chất hiện đại, đội ngũ giáo viên tâm huyết và các chương trình ngoại khóa đa dạng, nhà trường tạo điều kiện tốt nhất để mỗi học sinh khám phá và phát huy tiềm năng của bản thân.</p>
+                    <a href="#" class="highlight-cta">Khám phá thêm <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="highlight-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="100%">0</div>
+                    <div class="stat-label">Năm kinh nghiệm</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="95%">0</div>
+                    <div class="stat-label">Học sinh giỏi</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="100%">0</div>
+                    <div class="stat-label">Giáo viên chất lượng</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="90%">0</div>
+                    <div class="stat-label">Giải Xuất Sắc</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* ====================== */
+/* STYLES CHO PHẦN NỔI BẬT */
+/* ====================== */
+.featured-highlight {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-highlight::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: rgba(226, 27, 36, 0.05);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.featured-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 85, 165, 0.05);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.highlight-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.highlight-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.highlight-title {
+    font-size: 2.5rem;
+    color: #e21b24;
+    margin-bottom: 15px;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.highlight-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #0055a5;
+}
+
+.highlight-subtitle {
+    font-size: 1.2rem;
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.highlight-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.main-highlight {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-highlight:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.highlight-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #e21b24;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    z-index: 3;
+}
+
+.highlight-image {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.highlight-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.main-highlight:hover .highlight-image img {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+}
+
+.highlight-text {
+    padding: 30px;
+}
+
+.highlight-text h3 {
+    font-size: 1.8rem;
+    color: #0055a5;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.highlight-text p {
+    color: #495057;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.highlight-cta {
+    display: inline-flex;
+    align-items: center;
+    color: #e21b24;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.highlight-cta:hover {
+    color: #0055a5;
+}
+
+.highlight-cta i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.highlight-cta:hover i {
+    transform: translateX(5px);
+}
+
+.highlight-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.stat-item {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #e21b24;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .highlight-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .highlight-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .highlight-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .highlight-title {
+        font-size: 2rem;
+    }
+    
+    .highlight-text h3 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+<script>
+// Animation cho số đếm thống kê
+document.addEventListener('DOMContentLoaded', function() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    const options = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statNumber = entry.target;
+                const target = parseInt(statNumber.getAttribute('data-count'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    statNumber.textContent = Math.round(current);
+                }, 16);
+                
+                observer.unobserve(statNumber);
+            }
+        });
+    }, options);
+    
+    statNumbers.forEach(stat => {
+        observer.observe(stat);
+    });
+});
+</script>	
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TRƯỜNG THPT NHƯ THANH</h3>
+                    <p>Địa chỉ: Thị trấn Như Thanh, huyện Như Thanh, tỉnh Thanh Hóa</p>
+									
+                </div>
+                <div class="footer-section">
+                    <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
+                    <p>Theo dõi các hoạt động và tin tức mới nhất của 10C10</p>
+                    <div class="social-links">
+                       
+													
+										
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>LIÊN HỆ NGƯỜI SÁNG TẠO</h3>
+                    <p>THÔNG TIN NGƯỜI SÁNG TẠO: ...loading</p>
+                    <p>Đồng sáng tập: ......</p>
+                    <p>Người hướng dẫn: ....</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Bản quyền thuộc về. NTHT - LỚP 10C10  </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript để xử lý ngày và thời tiết
+        document.addEventListener('DOMContentLoaded', function() {
+            const days = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
+            const now = new Date();
+            const dayName = days[now.getDay()];
+            const date = now.getDate();
+            const month = now.getMonth() + 1;
+            const year = now.getFullYear();
+            
+            document.querySelector('.date').textContent = `${dayName}, ${date}-${month}-${year}`;
+            
+            // Hiệu ứng cho menu
+            const menuItems = document.querySelectorAll('.nav-menu li');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Hiệu ứng cuộn cho các phần tử
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.news-section, .teacher-section, .class-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
