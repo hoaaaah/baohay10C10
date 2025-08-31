@@ -600,15 +600,35 @@
                 </div>
             </div>
             
-            <ul class="nav-menu">
-                <li class="active">MỚI NHẤT</li>
-                <li>XEM NHIỀU</li>
-                <li>VIDEO</li>
-                <li>THỜI SỰ</li>
-                <li>THẾ GIỚI</li>
-                <li>GIÁO DỤC</li>
-                <li>VĂN HÓA</li>
-            </ul>
+                <ul class="nav-menu">
+    <li class="active">MỚI NHẤT</li>
+    <li>
+        <a href="article-11b7.html" target="_blank" class="menu-link">XEM NHIỀU</a>
+    </li>
+    <li>VIDEO</li>
+    <li>THỜI SỰ</li>
+    <li>THẾ GIỚI</li>
+    <li>GIÁO DỤC</li>
+    <li>VĂN HÓA</li>
+</ul>
+
+<style>
+    .nav-menu li a.menu-link {
+        text-decoration: none;   /* bỏ gạch chân */
+        color: #fff;             /* chữ màu trắng */
+        font-weight: inherit;    /* giữ nguyên độ đậm */
+    }
+
+    .nav-menu li a.menu-link:hover {
+        color: #ffd700; /* khi rê chuột vào đổi sang vàng */
+    }
+
+    /* nếu muốn gạch vàng dưới chữ khi active */
+    .nav-menu li a.menu-link.active {
+        border-bottom: 2px solid #ffd700;
+        padding-bottom: 3px;
+    }
+</style>
         </div>
     </header>
 
