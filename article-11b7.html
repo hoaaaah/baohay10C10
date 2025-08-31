@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lớp 11B7 - THPT Như Thanh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e21b24;
+            --secondary-color: #0055a5;
+            --accent-color: #ffcc00;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --dark-gray: #444;
+            --white: #fff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .article-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .article-header {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+        
+        .article-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .header-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--white);
+        }
+        
+        .article-badge {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .article-content {
+            padding: 40px;
+        }
+        
+        .content-section {
+            margin-bottom: 30px;
+        }
+        
+        .content-section h2 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .achievement-card {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .achievement-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .achievement-title {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+        
+        .teacher-profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .teacher-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: var(--transition);
+        }
+        
+        .back-button:hover {
+            background: var(--primary-color);
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-header {
+                height: 300px;
+            }
+            
+            .teacher-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="article-container">
+        <div class="article-header">
+            <img src="https://files.catbox.moe/xqttfs.jpeg" alt="Lớp 11B7 - THPT Như Thanh">
+            <div class="header-overlay">
+                <span class="article-badge">Lớp tiêu biểu</span>
+								
+								
+                <h1 class="article-title"> </h1>
+                <div class="article-meta">
+                    <span><i class="far fa-clock"></i> 3 giờ trước</span>
+                    <span><i class="far fa-eye"></i> 3.2K lượt xem</span>
+                    <span><i class="far fa-comment"></i> 145 bình luận</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="article-content">
+            <div class="content-section">
+                <h2>Giới thiệu chung</h2>
+                <p>Lớp 11B7 là một trong những tập thể xuất sắc nhất khối 11 của trường THPT Như Thanh. Với thành tích học tập đáng nể và tinh thần đoàn kết, lớp đã trở thành hình mẫu cho các lớp khác noi theo.</p>
+                <p>Năm học 2024-2025, lớp 11B7 đã đạt được nhiều thành tích nổi bật trong các kỳ thi học sinh giỏi cấp trường và cấp tỉnh, đặc biệt là trong lĩnh vực khoa học tự nhiên.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2>Thành tích nổi bật</h2>
+                <div class="achievement-grid">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="achievement-title">Có nhiều hoạt động tiêu biểu</div>
+                        <p>Học sinh đạt nhiều giải trong tỉnh </p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="achievement-title">95% học sinh giỏi</div>
+                        <p>Tỷ lệ học sinh đạt học lực giỏi học kỳ I</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="achievement-title"> Có thành tích nổi bật</div>
+                        <p>Đạt giải nhì qpan cấp tỉnh</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="achievement-title">Lớp xuất sắc</div>
+                        <p>Danh hiệu tập thể xuất sắc năm học 2024-2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2>Giáo viên chủ nhiệm</h2>
+                <div class="teacher-profile">
+                    <img src="https://files.catbox.moe/rkyn6x.jpeg" class="teacher-image">
+                    <div>
+                        <h3>Cô Đỗ Thị Thảo</h3>
+                        <p>Giáo viên chủ nhiệm lớp 11B7 - Giáo viên dạy giỏi cấp tỉnh môn tiếng anh</p>
+                        <p>Với hơn 15 năm kinh nghiệm giảng dạy, cô thảo đã dìu dắt nhiều thế hệ học sinh đạt thành tích cao trong các kỳ thi học sinh giỏi cấp quốc gia.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2>Hoạt động nổi bật</h2>
+                <p>Lớp 11B7 không chỉ xuất sắc trong học tập mà còn tích cực tham gia các hoạt động ngoại khóa của trường:</p>
+                <p>• Đạt giải nhì Hội thi Văn nghệ chào mừng 20/11</p>
+                <p>• Tham gia chiến dịch "Mùa hè xanh" tình nguyện tại địa phương</p>
+                <p>• Tổ chức thành công chương trình "Giao lưu khoa học" với các trường bạn</p>
+                <p>• Tham gia cuộc thi "Rung chuông vàng" cấp trường</p>
+            </div>
+            
+            <div class="content-section">
+                <h2>Hình ảnh của lớp</h2>
+                <div class="gallery">
+                    <img src="https://files.catbox.moe/o3gzw1.jpeg" alt="Hoạt động lớp 11B7">
+                    <img src="https://files.catbox.moe/u4kw7p.jpeg" alt="Hoạt động lớp 11B7">
+                    <img src="https://files.catbox.moe/r00cnm.jpeg" alt="Hoạt động lớp 11B7">
+                    <img src="https://files.catbox.moe/7lulkk.jpeg" alt="Hoạt động lớp 11B7">
+                </div>
+            </div>
+            
+            <a href="javascript:history.back()" class="back-button">
+                <i class="fas fa-arrow-left"></i> Quay lại trang chủ
+            </a>
+        </div>
+    </div>
+		        <footer>
+    <style>
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a1a1a, #333333, #111111);
+            color: #fff;
+            padding: 50px 20px 20px;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section {
+            flex: 1 1 300px;
+            margin: 15px;
+            opacity: 0; /* Ẩn trước để JS hiện */
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .footer-section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-left: 4px solid #ffcc00;
+            padding-left: 10px;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 8px;
+            font-size: 22px;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ffcc00;
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 15px;
+            opacity: 0.7;
+        }
+    </style>
+
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
+            <p>Theo dõi các hoạt động và tin tức mới nhất của 10C10</p>
+         <div class="social-links">
+    <a href="https://www.facebook.com/share/16oUT5ZTK8/?mibextid=wwXIfr" class="social" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.tiktok.com/@10c10_k60_25_28?_t=ZS-8zKg1yOi8P7&_r=1" class="social" target="_blank">
+        <i class="fab fa-tiktok"></i>
+    
+		
+    </a>
+		
+</div>
+
+        </div>
+        <div class="footer-section">
+            <h3>LIÊN HỆ NGƯỜI SÁNG TẠO</h3>
+            <p>THÔNG TIN NGƯỜI SÁNG TẠO:@nguyentronghoangtien</p>
+           
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Bản quyền thuộc về. NTHT - LỚP 10C10</p>
+    </div>
+
+    <script>
+    // Hiệu ứng hiện dần khi cuộn xuống
+    document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll(".footer-section");
+        const revealOnScroll = () => {
+            sections.forEach(sec => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    sec.classList.add("show");
+                }
+            });
+        };
+        window.addEventListener("scroll", revealOnScroll);
+        revealOnScroll();
+    });
+    </script>
+
+    <!-- FontAwesome icon -->
+    <script src="https://kit.fontawesome.com/4d8fcb5966.js" crossorigin="anonymous"></script>
+</footer>
+
+		
+</body>
+</html>
